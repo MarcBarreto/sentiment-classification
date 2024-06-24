@@ -43,3 +43,21 @@ if __name__ == '__main__':
     print(f'Confusion matrix: {Confusion_matrix(y_test_le, predict)}')
 
     model.save('./model_v1.keras')
+
+    # Deploy
+    text = ' '
+    while(text !== quit) {
+        text = input('Type the sentence to be analyzed or quit to exit')
+        df = pd.DataFrame({'Phrase': [text]})
+
+        df['Processed_Phrase'] = df['Phrase'].apply(utils.preprocess_text)
+
+        df_tfidf = utils.tfidf_vectorizer(df['Processed_Phrase'], fit = True, tfidf = tfidf)
+        df_tfidf_array = df_tfidf.toarray()
+
+        result = model.predict(df_tfidf_array)
+
+        prob_class = np.argmax(result, axis = 1)
+        class_name = label_encoder.inverse_transform(prob_class)
+        print(f'The sentiment is {class_name}')
+    }
