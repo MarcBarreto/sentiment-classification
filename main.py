@@ -1,4 +1,5 @@
 import os
+from fnn import FNN
 import utils
 import pandas as pd
 from keras.utils import to_categorical
@@ -32,3 +33,13 @@ if __name__ == '__main__':
     y_train_encoded = to_categorical(y_train)
     y_val_encoded = to_categorical(y_Val)
     y_test_encoded = to_categorical(y_test_le)
+
+    model = FNN(num_classes = 6, w_classes = w_classes)
+    history = model.train(X,train, y_train_encoded, X_val, y_val_encoded, num_epochs = 30, batch_size = 256)
+
+    predict = model.predict(X_test_array)
+    print(f'Classification Report: {Classification_report(y_test_le, predict)}')
+
+    print(f'Confusion matrix: {Confusion_matrix(y_test_le, predict)}')
+
+    model.save('./model_v1.keras')
