@@ -39,18 +39,21 @@ To set up the environment and install the necessary dependencies, follow these s
 4. **Create a virtual environment**:
    ```sh
    conda create --name sentiment_env python=3.10
-   conda activate sentiment_env ```
+   conda activate sentiment_env
+   ```
 6. **Install dependencies**:
+   ```sh
    pip install -r requirements.txt
-7. **Add trained models: Place the trained models into the models directory.**
+   ```
+8. **Add trained models: Place the trained models into the models directory.**
 
 ## Usage
 To deploy the models and analyze a sentence, follow these steps:
-
 1. **Ensure the trained models are in the models directory.**
 2. **Run the main.py script with the sentence to be analyzed**
-   ```sh
-   python main.py --sentence "Your sentence here" ```
+   ```python
+   python main.py "Your sentence here"
+   ```
 ## Models
 
 # LSTM Model
@@ -64,7 +67,7 @@ To deploy the models and analyze a sentence, follow these steps:
 - Description: This notebook demonstrates the creation, training, and testing of a Transformer model based on BERT from Hugging Face's TensorFlow implementation.
 
 ## Data
-  The dataset used for training and testing the models is located in the data directory under the file sentiment_data.csv.
+  The dataset used for training and testing the models is located in the data directory under the file dados_treino.txt e dados_teste.txt.
 
 ##License
   MIT License
