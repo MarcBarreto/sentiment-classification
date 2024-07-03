@@ -69,6 +69,6 @@ To deploy the models and analyze a sentence, follow these steps:
 ## Data
   The dataset used for training and testing the models is located in the data directory under the file dados_treino.txt e dados_teste.txt.
 
-##License
+## License
   MIT License
    
