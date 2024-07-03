@@ -14,17 +14,24 @@ This project aims to compare three different models for sentiment classification
 
 ## Project Structure
 The project is organized as follows:
+```sh
 📦 sentiment-classification
-┣ 📂data
-┃ ┗ 📜 sentiment_data.csv
+┣ 📂datas
+┃ ┗ 📜 dados-treino.txt
+┃ ┗ 📜 dados-teste.txt
 ┣ 📂models
 ┃ ┗ 📜 (trained models to be added here)
 ┣ 📜 sentiment_classification_LSTM.ipynb
 ┣ 📜 sentiment_classification_FNN.ipynb
-┣ 📜 sentiment_classification_Transformer.ipynb
+┣ 📜 sentimentClassificationTransformer.ipynb
 ┣ 📜 main.py
+┣ 📜 fnn.py
+┣ 📜 train.py
+┣ 📜 utils.py
 ┣ 📜 requirements.txt
 ┗ 📜 README.md
+┗ 📜 LICENSE
+```
 
 ## Installation
 To set up the environment and install the necessary dependencies, follow these steps:
