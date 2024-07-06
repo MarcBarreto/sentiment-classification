@@ -1,8 +1,11 @@
 import os
 import utils
+import numpy as np
 import transformers
 import pandas as pd
+import tensorflow as tf
 from fnn import FNN
+from tqdm import tqdm
 from tensorflow import keras
 from keras.utils import to_categorical
 from transformers import TFDistilBertModel
@@ -64,13 +67,13 @@ if __name__ == '__main__':
 
     # Transformer Tokenizer
     bert_tokenizer = transformers.DistilBertTokenizer.from_pretrained('distilbert-base-multilingual-cased')
-    tokenizer_bert.save_pretrained('.')
+    bert_tokenizer.save_pretrained('.')
     fast_tokenizer = BertWordPieceTokenizer('vocab.txt', lowercase = False)
 
     max_length = 100
     # Deploy
     text = ' '
-    while(text !== quit) {
+    while(text != 'quit'):
         text = input('Type the sentence to be analyzed or quit to exit')
         df = pd.DataFrame({'Phrase': [text]})
 
@@ -80,7 +83,7 @@ if __name__ == '__main__':
         df_tfidf = utils.tfidf_vectorizer(df['Processed_Phrase'], fit = True, tfidf = tfidf)
         df_tfidf_array = df_tfidf.toarray()
 
-        fnn_result = model.predict(df_tfidf_array)
+        fnn_result = fnn_model.predict(df_tfidf_array)
 
         fnn_prob_class = np.argmax(fnn_result, axis = 1)
         fnn_class_name = label_encoder.inverse_transform(fnn_prob_class)
@@ -106,4 +109,3 @@ if __name__ == '__main__':
         print(f'Result of FNN Model: Sentiment: {fnn_class_name}. Score: {fnn_prob_class:.2f}')
         print(f'Result of LSTM Model: Sentiment: {lstm_class_name}. Score: {lstm_prob_class:.2f}')
         print(f'Result of Transformer (Bert) Model: Sentiment: {transformer_class_name}. Score: {transformer_prob_class:.2f}')
-    }
